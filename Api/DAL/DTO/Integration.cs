@@ -24,6 +24,9 @@ namespace Api.DAL.DTO
         [Required]
         public IntegrationType Type { get; set; }
 
+        [Required]
+        public IntegrationStatus Status { get; set; }
+
         public ICollection<MarketUserIntegration> MarketUserIntegrations { get; set; } // 1=>n relation
     }
 }

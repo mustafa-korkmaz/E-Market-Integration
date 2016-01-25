@@ -15,7 +15,12 @@ namespace Api.BL
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public BLResponse<IntegrationModel> GetIntegrationModel(string integrationName)
+        /// <summary>
+        /// returns integration content with supported media type
+        /// </summary>
+        /// <param name="integrationName"></param>
+        /// <returns></returns>
+        public BLResponse<IntegrationModel> GetIntegration(string integrationName)
         {
             var blResponse = new BLResponse<IntegrationModel>();
             blResponse.ResponseCode = ResponseCode.Success;
@@ -45,6 +50,38 @@ namespace Api.BL
 
                 webResponse.Close();
                 readStream.Close();
+            }
+            catch (Exception)
+            {
+                blResponse.ResponseData = null;
+                blResponse.ResponseCode = ResponseCode.Fail;
+                blResponse.ResponseMessage = ResponseMessage.IntegrationNotFound;
+            }
+
+            return blResponse;
+        }
+
+        /// <summary>
+        /// returns all integration summaries
+        /// </summary>
+        /// <returns></returns>
+        public BLResponse<List<IntegrationInfoModel>> GetAllIntegrationInfo()
+        {
+            var blResponse = new BLResponse<List<IntegrationInfoModel>>();
+            blResponse.ResponseCode = ResponseCode.Success;
+
+            try
+            {
+                var integrationsQuery = db.Integrations.Select(p => new IntegrationInfoModel
+                                {
+                                    Name = p.Name,
+                                    Type = p.Type,
+                                    Status = p.Status,
+                                    Url = p.Url
+                                }
+                           );
+
+                blResponse.ResponseData = integrationsQuery.ToList();
             }
             catch (Exception)
             {

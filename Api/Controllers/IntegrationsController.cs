@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -13,19 +10,20 @@ using Api.Models;
 using Api.BL;
 using Api.Common;
 using System.Text;
-using System.Net.Http.Headers;
-using System.Net.Http.Formatting;
+using System.Collections.Generic;
 
 namespace Api.Controllers
 {
     public class IntegrationsController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: api/Integrations
-        public IQueryable<Integration> GetIntegrations()
+        public IEnumerable<IntegrationInfoModel> GetIntegrations()
         {
-            return db.Integrations;
+            BLIntegration blIntegration = new BLIntegration();
+
+            BLResponse<List<IntegrationInfoModel>> integrationInfoResponse = blIntegration.GetAllIntegrationInfo();
+
+            return integrationInfoResponse.ResponseData;
         }
 
         // GET: api/Integrations/harunk
@@ -33,7 +31,7 @@ namespace Api.Controllers
         {
             BLIntegration blIntegration = new BLIntegration();
 
-            BLResponse<IntegrationModel> integrationResponse = blIntegration.GetIntegrationModel(name);
+            BLResponse<IntegrationModel> integrationResponse = blIntegration.GetIntegration(name);
 
             if (integrationResponse.ResponseCode == ResponseCode.Fail)
             {
@@ -51,6 +49,8 @@ namespace Api.Controllers
             };
         }
 
+        #region auto-generated
+        /*
         // PUT: api/Integrations/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutIntegration(int id, Integration integration)
@@ -130,5 +130,7 @@ namespace Api.Controllers
         {
             return db.Integrations.Count(e => e.Id == id) > 0;
         }
+         */
+        #endregion auto-generated
     }
 }

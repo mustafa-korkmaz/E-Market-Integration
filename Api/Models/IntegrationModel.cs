@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Api.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,4 +11,12 @@ namespace Api.Models
         public string Content { get; set; } // integration content
         public string MediaType { get; set; } // e.g application/json
     }
+    public class IntegrationInfoModel
+    {
+        public string Name { get; set; }
+        public string Url { get; set; } // e.g harun-kirkikoglu
+        public IntegrationType Type { get; set; } // opencart, magento?
+        public IntegrationStatus Status { get; set; } // active, passive?
+    }
+
 }

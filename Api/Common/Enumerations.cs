@@ -16,6 +16,15 @@ namespace Api.Common
         NopCommerce
     }
 
+    public enum IntegrationStatus
+    {
+        Initial = 0,
+        Active,
+        Passive,
+        Suspended,
+        Deleted
+    }
+
     public enum ResponseCode
     {
         Fail = 0,

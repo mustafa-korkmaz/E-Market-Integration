@@ -238,6 +238,10 @@
     <Compile Include="Migrations\201601241203382_AddIntegrationType.Designer.cs">
       <DependentUpon>201601241203382_AddIntegrationType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601251938233_AddIntegrationStatusType.cs" />
+    <Compile Include="Migrations\201601251938233_AddIntegrationStatusType.Designer.cs">
+      <DependentUpon>201601251938233_AddIntegrationStatusType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -333,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601241203382_AddIntegrationType.resx">
       <DependentUpon>201601241203382_AddIntegrationType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601251938233_AddIntegrationStatusType.resx">
+      <DependentUpon>201601251938233_AddIntegrationStatusType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
