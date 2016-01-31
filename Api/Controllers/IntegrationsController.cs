@@ -27,7 +27,7 @@ namespace Api.Controllers
         }
 
         // GET: api/Integrations/harunk
-        public HttpResponseMessage GetIntegration(string name)
+        public HttpResponseMessage GetIntegration(string name, string exportType)
         {
             BLIntegration blIntegration = new BLIntegration();
 

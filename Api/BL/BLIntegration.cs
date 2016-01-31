@@ -29,7 +29,9 @@ namespace Api.BL
             {
                 Integration integration = db.Integrations.Single(p => p.Name == integrationName);
 
-                WebRequest request = WebRequest.Create(integration.Url);
+                var integrationDetail = integration.IntegrationDetails.Single(p => p.ExportType == ExportType.Category);
+
+                WebRequest request = WebRequest.Create(integrationDetail.Url);
                 var webResponse = request.GetResponse();
 
                 string mediaType = webResponse.ContentType.Contains("json") ? "application/json" : "application/xml";
@@ -77,7 +79,6 @@ namespace Api.BL
                                     Name = p.Name,
                                     Type = p.Type,
                                     Status = p.Status,
-                                    Url = p.Url
                                 }
                            );
 

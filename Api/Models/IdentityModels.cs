@@ -35,16 +35,30 @@ namespace Api.Models
 
         public DbSet<TestCodeFirstDto> TestCodeFirstDtos { get; set; }
         public DbSet<Market> Markets { get; set; }
+        public DbSet<MarketUser> MarketUsers { get; set; }
+        public DbSet<MarketUserIntegration> MarketUserIntegrations { get; set; }
+        public DbSet<IntegrationDetail> IntegrationDetails { get; set; }
+        public DbSet<Integration> Integrations { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Api.DAL.DTO.Integration> Integrations { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<IntegrationDetail>()
+              .HasOptional(i => i.Integration)
+              .WithMany(i => i.IntegrationDetails)
+              .HasForeignKey(i => i.IntegrationId);
 
-        public System.Data.Entity.DbSet<Api.DAL.DTO.MarketUser> MarketUsers { get; set; }
+            modelBuilder.Entity<MarketUserIntegration>()
+            .HasOptional(i => i.Integration)
+            .WithMany(i => i.MarketUserIntegrations)
+            .HasForeignKey(i => i.IntegrationId);
+        }
 
-        public System.Data.Entity.DbSet<Api.DAL.DTO.MarketUserIntegration> MarketUserIntegrations { get; set; }
     }
+
 }

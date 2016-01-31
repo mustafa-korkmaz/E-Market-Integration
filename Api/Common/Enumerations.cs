@@ -16,6 +16,12 @@ namespace Api.Common
         NopCommerce
     }
 
+    public enum ExportType
+    {
+        Product=0,
+        Category=1
+    }
+
     public enum IntegrationStatus
     {
         Initial = 0,

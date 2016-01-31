@@ -19,5 +19,7 @@ namespace Api.DAL.DTO
 
         [Required]
         public int IntegrationId { get; set; }
+
+        public Integration Integration { get; set; } // navigation property
     }
 }

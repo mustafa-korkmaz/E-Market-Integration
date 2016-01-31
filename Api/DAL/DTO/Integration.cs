@@ -18,15 +18,14 @@ namespace Api.DAL.DTO
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(250)]
-        public string Url { get; set; }
-
-        [Required]
         public IntegrationType Type { get; set; }
 
         [Required]
         public IntegrationStatus Status { get; set; }
 
         public ICollection<MarketUserIntegration> MarketUserIntegrations { get; set; } // 1=>n relation
+    
+        public ICollection<IntegrationDetail> IntegrationDetails { get; set; } // 1=>n relation
+
     }
 }

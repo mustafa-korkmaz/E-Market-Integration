@@ -14,7 +14,6 @@ namespace Api.Models
     public class IntegrationInfoModel
     {
         public string Name { get; set; }
-        public string Url { get; set; } // e.g harun-kirkikoglu
         public IntegrationType Type { get; set; } // opencart, magento?
         public IntegrationStatus Status { get; set; } // active, passive?
     }

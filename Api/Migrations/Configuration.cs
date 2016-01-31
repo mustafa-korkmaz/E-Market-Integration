@@ -37,15 +37,21 @@ namespace Api.Migrations
             );
 
             context.Integrations.AddOrUpdate(
-              p => new { p.Name, p.Url, p.Type },
-              new Integration { Name = "harun-kirkikoglu", Url = "http://harunkirkikoglu.com", Type = IntegrationType.Opencart }
+              p => new { p.Name, p.Type },
+              new Integration { Name = "harun-kirkikoglu", Type = IntegrationType.Opencart }
             );
 
             context.MarketUserIntegrations.AddOrUpdate(
              p => new { p.Desc, p.IntegrationId, p.MarketUserId },
              new MarketUserIntegration { Desc = "harunk.com sitesine ait n11 entegrasyonu", IntegrationId = 1, MarketUserId = 1 },
              new MarketUserIntegration { Desc = "harunk.com sitesine ait gg entegrasyonu", IntegrationId = 1, MarketUserId = 3 }
-           );
+            );
+
+            //context.IntegrationDetails.AddOrUpdate(
+            //  p => new { p.IntegrationId, p.Url, p.ExportType },
+            //  new IntegrationDetail { IntegrationId = 1, Url = "http://localhost:8080/opencart/index.php?route=export/product", ExportType = ExportType.Product },
+            //  new IntegrationDetail { IntegrationId = 1, Url = "http://localhost:8080/opencart/index.php?route=export/category", ExportType = ExportType.Category }
+            //  );
 
         }
     }

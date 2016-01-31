@@ -211,6 +211,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IntegrationsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DAL\DTO\IntegrationDetail.cs" />
     <Compile Include="DAL\DTO\MarketUserIntegration.cs" />
     <Compile Include="DAL\DTO\Integration.cs" />
     <Compile Include="DAL\DTO\MarketUser.cs" />
@@ -241,6 +242,10 @@
     <Compile Include="Migrations\201601251938233_AddIntegrationStatusType.cs" />
     <Compile Include="Migrations\201601251938233_AddIntegrationStatusType.Designer.cs">
       <DependentUpon>201601251938233_AddIntegrationStatusType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601312039415_AddIntegrationDetail.cs" />
+    <Compile Include="Migrations\201601312039415_AddIntegrationDetail.Designer.cs">
+      <DependentUpon>201601312039415_AddIntegrationDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -341,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601251938233_AddIntegrationStatusType.resx">
       <DependentUpon>201601251938233_AddIntegrationStatusType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601312039415_AddIntegrationDetail.resx">
+      <DependentUpon>201601312039415_AddIntegrationDetail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
