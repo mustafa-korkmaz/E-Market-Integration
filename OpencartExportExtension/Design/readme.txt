@@ -1,0 +1,1 @@
+this files helps to get product entities from opencart myssql db

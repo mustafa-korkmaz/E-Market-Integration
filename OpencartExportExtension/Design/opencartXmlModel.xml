@@ -1,0 +1,72 @@
+<!--sample product HP LP3065 code: Product21-->
+<Products>
+  <Product>
+  <Status>1</Status>
+    <Brand>
+      <Name>Apple</Name>
+      <Id>5</Id>
+    </Brand>
+    <Category>
+      <Name>Bilgisayar</Name>
+      <Id>53</Id>
+    </Category>
+    <Code>21232</Code>
+    <Name>Macbook</Name>
+    <Description>here goes the product desc</Description>
+    <Quantity>34</Quantity>
+	<DefaultImage>here goes the image source link 0</DefaultImage>
+    <Images>
+      <Image>
+        here goes the image source link 1
+      </Image>
+      <Image>
+        here goes the image source link 2
+      </Image>
+    </Images>
+    <Pricing>
+      <Price>500</Price>
+      <TaxIncluded>0</TaxIncluded>
+      <TaxRate>18</TaxRate>
+      <SpecialPrice>400</SpecialPrice>
+    </Pricing>
+    <Shipping>
+      <Firm>
+        <Name>Aras Kargo</Name>
+        <Id>53</Id>
+      </Firm>
+      <Cost>45</Cost>
+    </Shipping>
+    <Attributes>
+      <Attribute>
+        <Name>Marka</Name>
+        <Value>Apple</Value>
+        <Id>5</Id>
+      </Attribute>
+      <Attribute>
+        <Name>Cpu</Name>
+        <Value>2.8  Ghz</Value>
+        <Id>43</Id>
+      </Attribute>
+    </Attributes>
+    <Options>
+      <Option>
+        <Name>Renk</Name>
+        <Values>
+          <Value>Siyah</Value>
+          <Value>Mavi</Value>
+          <Value>Sari</Value>
+        </Values>
+        <Id>5</Id>
+      </Option>
+      <Option>
+        <Name>Beden</Name>
+        <Values>
+          <Value>46</Value>
+          <Value>47</Value>
+          <Value>48</Value>
+        </Values>
+        <Id>52</Id>
+      </Option>
+    </Options>
+  </Product>
+</Products>
