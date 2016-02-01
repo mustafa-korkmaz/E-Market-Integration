@@ -31,7 +31,7 @@ namespace Api.Controllers
         {
             BLIntegration blIntegration = new BLIntegration();
 
-            BLResponse<IntegrationModel> integrationResponse = blIntegration.GetIntegration(name);
+            BLResponse<IntegrationModel> integrationResponse = blIntegration.GetIntegration(name, exportType);
 
             if (integrationResponse.ResponseCode == ResponseCode.Fail)
             {

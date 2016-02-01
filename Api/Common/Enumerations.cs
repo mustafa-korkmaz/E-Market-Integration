@@ -18,6 +18,7 @@ namespace Api.Common
 
     public enum ExportType
     {
+        Undefined = -1,
         Product=0,
         Category=1
     }

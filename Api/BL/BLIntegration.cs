@@ -20,16 +20,26 @@ namespace Api.BL
         /// </summary>
         /// <param name="integrationName"></param>
         /// <returns></returns>
-        public BLResponse<IntegrationModel> GetIntegration(string integrationName)
+        public BLResponse<IntegrationModel> GetIntegration(string integrationName, string exportType)
         {
             var blResponse = new BLResponse<IntegrationModel>();
             blResponse.ResponseCode = ResponseCode.Success;
+
+            ExportType type = GetExportType(exportType);
+
+            if (type == ExportType.Undefined)
+            {
+                blResponse.ResponseData = null;
+                blResponse.ResponseCode = ResponseCode.Fail;
+                blResponse.ResponseMessage = ResponseMessage.ExportTypeNotFound;
+                return blResponse;
+            }
 
             try
             {
                 Integration integration = db.Integrations.Single(p => p.Name == integrationName);
 
-                var integrationDetail = integration.IntegrationDetails.Single(p => p.ExportType == ExportType.Category);
+                var integrationDetail = integration.IntegrationDetails.Single(p => p.ExportType == type);
 
                 WebRequest request = WebRequest.Create(integrationDetail.Url);
                 var webResponse = request.GetResponse();
@@ -92,6 +102,25 @@ namespace Api.BL
             }
 
             return blResponse;
+        }
+
+
+        /// <summary>
+        /// gets the export type from query string
+        /// </summary>
+        /// <param name="exportType"></param>
+        /// <returns></returns>
+        private ExportType GetExportType(string exportType)
+        {
+            switch (exportType.ToLower())
+            {
+                case ExportTypeText.Category:
+                    return ExportType.Category;
+                case ExportTypeText.Product:
+                    return ExportType.Product;
+                default:
+                    return ExportType.Undefined;
+            }
         }
     }
 }

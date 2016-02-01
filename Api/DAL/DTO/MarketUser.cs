@@ -9,9 +9,12 @@ namespace Api.DAL.DTO
 {
     public class MarketUser
     {
+        public MarketUser()
+        {
+            MarketUserIntegrations = new List<MarketUserIntegration>();
+        }
+
         public int Id { get; set; }
-        public int MarketId { get; set; } // foreign key for market
-        public Market Market { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -26,7 +29,10 @@ namespace Api.DAL.DTO
         [MaxLength(150)]
         public string Token { get; set; }
 
-        public ICollection<MarketUserIntegration> MarketUserIntegrations { get; set; } // 1=>n relation
+        public int MarketId { get; set; } // foreign key 
+        public virtual Market Market { get; set; } // navigation property
+   
+        public virtual ICollection<MarketUserIntegration> MarketUserIntegrations { get; set; } // 1=>n relation
 
     }
 }

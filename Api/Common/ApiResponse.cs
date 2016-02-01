@@ -39,5 +39,6 @@ namespace Api.Common
     public static class ResponseMessage
     {
         public const string IntegrationNotFound = "Integration not found";
+        public const string ExportTypeNotFound = "Export type not found";
     }
 }

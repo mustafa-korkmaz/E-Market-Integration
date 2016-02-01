@@ -14,12 +14,10 @@ namespace Api.DAL.DTO
         [MaxLength(250)]
         public string Desc { get; set; }
 
-        [Required]
-        public int MarketUserId { get; set; }
+        public int MarketUserId { get; set; } // foreign key 
+        public virtual MarketUser MarketUser { get; set; } // navigation property
 
-        [Required]
-        public int IntegrationId { get; set; }
-
-        public Integration Integration { get; set; } // navigation property
+        public int IntegrationId { get; set; } // foreign key 
+        public virtual Integration Integration { get; set; } // navigation property
     }
 }

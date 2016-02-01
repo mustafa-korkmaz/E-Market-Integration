@@ -10,10 +10,15 @@ namespace Api.DAL.DTO
     {
         public int Id { get; set; }
 
+        public Market()
+        {
+            MarketUsers = new List<MarketUser>();
+        }
+
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
 
-        public ICollection<MarketUser> MarketUsers { get; set; } // 1=>n relation
+        public virtual ICollection<MarketUser> MarketUsers { get; set; } // 1=>n relation
     }
 }

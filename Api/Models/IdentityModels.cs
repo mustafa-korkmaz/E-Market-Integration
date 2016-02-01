@@ -33,7 +33,6 @@ namespace Api.Models
         {
         }
 
-        public DbSet<TestCodeFirstDto> TestCodeFirstDtos { get; set; }
         public DbSet<Market> Markets { get; set; }
         public DbSet<MarketUser> MarketUsers { get; set; }
         public DbSet<MarketUserIntegration> MarketUserIntegrations { get; set; }
@@ -47,16 +46,29 @@ namespace Api.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<IntegrationDetail>()
-              .HasOptional(i => i.Integration)
-              .WithMany(i => i.IntegrationDetails)
-              .HasForeignKey(i => i.IntegrationId);
+            base.OnModelCreating(modelBuilder);
+
+            //one-to-many 
+            modelBuilder.Entity<MarketUser>()
+                        .HasRequired<Market>(m => m.Market)
+                        .WithMany(m => m.MarketUsers)
+                        .HasForeignKey(m => m.MarketId);
 
             modelBuilder.Entity<MarketUserIntegration>()
-            .HasOptional(i => i.Integration)
-            .WithMany(i => i.MarketUserIntegrations)
-            .HasForeignKey(i => i.IntegrationId);
+                     .HasRequired<MarketUser>(m => m.MarketUser)
+                     .WithMany(m => m.MarketUserIntegrations)
+                     .HasForeignKey(m => m.MarketUserId);
+
+            modelBuilder.Entity<MarketUserIntegration>()
+                  .HasRequired<Integration>(m => m.Integration)
+                  .WithMany(m => m.MarketUserIntegrations)
+                  .HasForeignKey(m => m.IntegrationId);
+
+            modelBuilder.Entity<IntegrationDetail>()
+                .HasRequired<Integration>(m => m.Integration)
+                .WithMany(m => m.IntegrationDetails)
+                .HasForeignKey(m => m.IntegrationId);
+
         }
 
     }

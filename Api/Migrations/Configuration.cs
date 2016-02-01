@@ -38,7 +38,8 @@ namespace Api.Migrations
 
             context.Integrations.AddOrUpdate(
               p => new { p.Name, p.Type },
-              new Integration { Name = "harun-kirkikoglu", Type = IntegrationType.Opencart }
+              new Integration { Name = "harun-kirkikoglu", Type = IntegrationType.Opencart },
+              new Integration { Name = "local", Type = IntegrationType.Opencart }
             );
 
             context.MarketUserIntegrations.AddOrUpdate(
@@ -47,11 +48,11 @@ namespace Api.Migrations
              new MarketUserIntegration { Desc = "harunk.com sitesine ait gg entegrasyonu", IntegrationId = 1, MarketUserId = 3 }
             );
 
-            //context.IntegrationDetails.AddOrUpdate(
-            //  p => new { p.IntegrationId, p.Url, p.ExportType },
-            //  new IntegrationDetail { IntegrationId = 1, Url = "http://localhost:8080/opencart/index.php?route=export/product", ExportType = ExportType.Product },
-            //  new IntegrationDetail { IntegrationId = 1, Url = "http://localhost:8080/opencart/index.php?route=export/category", ExportType = ExportType.Category }
-            //  );
+            context.IntegrationDetails.AddOrUpdate(
+              p => new { p.IntegrationId, p.Url, p.ExportType },
+              new IntegrationDetail { IntegrationId = 1, Url = "http://localhost:8080/opencart/index.php?route=export/product", ExportType = ExportType.Product },
+              new IntegrationDetail { IntegrationId = 1, Url = "http://localhost:8080/opencart/index.php?route=export/category", ExportType = ExportType.Category }
+              );
 
         }
     }

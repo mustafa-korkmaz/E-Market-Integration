@@ -10,6 +10,12 @@ namespace Api.DAL.DTO
 {
     public class Integration
     {
+        public Integration()
+        {
+            IntegrationDetails = new List<IntegrationDetail>();
+            MarketUserIntegrations = new List<MarketUserIntegration>();
+        }
+      
         public int Id { get; set; }
 
         [Required]
@@ -23,9 +29,9 @@ namespace Api.DAL.DTO
         [Required]
         public IntegrationStatus Status { get; set; }
 
-        public ICollection<MarketUserIntegration> MarketUserIntegrations { get; set; } // 1=>n relation
-    
-        public ICollection<IntegrationDetail> IntegrationDetails { get; set; } // 1=>n relation
+        public virtual ICollection<MarketUserIntegration> MarketUserIntegrations { get; set; } // 1=>n relation
+
+        public virtual ICollection<IntegrationDetail> IntegrationDetails { get; set; } // 1=>n relation
 
     }
 }

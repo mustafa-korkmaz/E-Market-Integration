@@ -206,6 +206,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="BL\BLIntegration.cs" />
     <Compile Include="Common\ApiResponse.cs" />
+    <Compile Include="Common\Constraints.cs" />
     <Compile Include="Common\Enumerations.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -223,29 +224,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201601241103301_EmptySeed.cs" />
-    <Compile Include="Migrations\201601241103301_EmptySeed.Designer.cs">
-      <DependentUpon>201601241103301_EmptySeed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601241132151_AddIndexToMarketUsers.cs" />
-    <Compile Include="Migrations\201601241132151_AddIndexToMarketUsers.Designer.cs">
-      <DependentUpon>201601241132151_AddIndexToMarketUsers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601241133561_EmptySeed1.cs" />
-    <Compile Include="Migrations\201601241133561_EmptySeed1.Designer.cs">
-      <DependentUpon>201601241133561_EmptySeed1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601241203382_AddIntegrationType.cs" />
-    <Compile Include="Migrations\201601241203382_AddIntegrationType.Designer.cs">
-      <DependentUpon>201601241203382_AddIntegrationType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601251938233_AddIntegrationStatusType.cs" />
-    <Compile Include="Migrations\201601251938233_AddIntegrationStatusType.Designer.cs">
-      <DependentUpon>201601251938233_AddIntegrationStatusType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601312039415_AddIntegrationDetail.cs" />
-    <Compile Include="Migrations\201601312039415_AddIntegrationDetail.Designer.cs">
-      <DependentUpon>201601312039415_AddIntegrationDetail.cs</DependentUpon>
+    <Compile Include="Migrations\201602012253298_seed.cs" />
+    <Compile Include="Migrations\201602012253298_seed.Designer.cs">
+      <DependentUpon>201602012253298_seed.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -332,23 +313,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201601241103301_EmptySeed.resx">
-      <DependentUpon>201601241103301_EmptySeed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601241132151_AddIndexToMarketUsers.resx">
-      <DependentUpon>201601241132151_AddIndexToMarketUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601241133561_EmptySeed1.resx">
-      <DependentUpon>201601241133561_EmptySeed1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601241203382_AddIntegrationType.resx">
-      <DependentUpon>201601241203382_AddIntegrationType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601251938233_AddIntegrationStatusType.resx">
-      <DependentUpon>201601251938233_AddIntegrationStatusType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601312039415_AddIntegrationDetail.resx">
-      <DependentUpon>201601312039415_AddIntegrationDetail.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602012253298_seed.resx">
+      <DependentUpon>201602012253298_seed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
