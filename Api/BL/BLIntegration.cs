@@ -8,6 +8,8 @@ using Api.DAL.DTO;
 using System.Net;
 using System.IO;
 using System.Text;
+using Newtonsoft.Json;
+using Api.Common.DataExport;
 
 namespace Api.BL
 {
@@ -16,9 +18,10 @@ namespace Api.BL
         private ApplicationDbContext db = new ApplicationDbContext();
 
         /// <summary>
-        /// returns integration content with supported media type
+        /// returns integration content 
         /// </summary>
         /// <param name="integrationName"></param>
+        ///  <param name="exportType"> category or product</param>
         /// <returns></returns>
         public BLResponse<IntegrationModel> GetIntegration(string integrationName, string exportType)
         {
@@ -44,21 +47,15 @@ namespace Api.BL
                 WebRequest request = WebRequest.Create(integrationDetail.Url);
                 var webResponse = request.GetResponse();
 
-                string mediaType = webResponse.ContentType.Contains("json") ? "application/json" : "application/xml";
-
                 // Get the stream associated with the response.
                 Stream receiveStream = webResponse.GetResponseStream();
 
                 // Pipes the stream to a higher level stream reader with the required encoding format. 
                 StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
 
-                IntegrationModel integrationModel = new IntegrationModel
-                {
-                    Content = readStream.ReadToEnd(),
-                    MediaType = mediaType
-                };
+                var categories = JsonConvert.DeserializeObject<IList<CategoryModel>>(readStream.ReadToEnd());
 
-                blResponse.ResponseData = integrationModel;
+                blResponse.ResponseData = new IntegrationModel { Content = readStream.ReadToEnd() };
 
                 webResponse.Close();
                 readStream.Close();

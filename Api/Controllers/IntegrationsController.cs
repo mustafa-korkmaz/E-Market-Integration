@@ -44,7 +44,7 @@ namespace Api.Controllers
 
             return new HttpResponseMessage
             {
-                Content = new StringContent(integrationResponse.ResponseData.Content, Encoding.UTF8, integrationResponse.ResponseData.MediaType),
+                Content = new StringContent(integrationResponse.ResponseData.Content, Encoding.UTF8, "application/xml"),
                 StatusCode = HttpStatusCode.OK
             };
         }

@@ -207,6 +207,12 @@
     <Compile Include="BL\BLIntegration.cs" />
     <Compile Include="Common\ApiResponse.cs" />
     <Compile Include="Common\Constraints.cs" />
+    <Compile Include="Common\DataExport\Category.cs" />
+    <Compile Include="Common\DataExport\Product.cs" />
+    <Compile Include="Common\DataExport\ProductImage.cs" />
+    <Compile Include="Common\DataExport\ProductOption.cs" />
+    <Compile Include="Common\DataExport\ShippingMethod.cs" />
+    <Compile Include="Common\DataExport\ProductAttribute.cs" />
     <Compile Include="Common\Enumerations.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -232,6 +238,7 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\IntegrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
