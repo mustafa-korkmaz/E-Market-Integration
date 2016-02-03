@@ -204,7 +204,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="BL\BLIntegration.cs" />
+    <Compile Include="BL\DataExport\ProductExporter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BL\Integration\BLIntegration.cs" />
+    <Compile Include="BL\DataExport\CategoryExporter.cs" />
+    <Compile Include="BL\DataExport\Exporter.cs" />
+    <Compile Include="BL\Helper\Extensions.cs" />
     <Compile Include="Common\ApiResponse.cs" />
     <Compile Include="Common\Constraints.cs" />
     <Compile Include="Common\DataExport\Category.cs" />

@@ -7,7 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Api.DAL.DTO;
 using Api.Models;
-using Api.BL;
+using Api.BL.Integration;
 using Api.Common;
 using System.Text;
 using System.Collections.Generic;
@@ -133,27 +133,5 @@ namespace Api.Controllers
          */
         #endregion auto-generated
         
-        public HttpResponseMessage TestMethod()
-        {
-            List<Category>catList=new List<Category>();
-            catList.Add(new Category() { ID = 3, CategoryId = 4 });
-            catList.Add(new Category() { ID = 3, CategoryId = 4 });
-            catList.Add(new Category() { ID = 3, CategoryId = 333 });
-            string xml;
-            XmlSerializer xsSubmit = new XmlSerializer(catList.GetType());
-           
-            using (StringWriter sww = new StringWriter())
-            using (XmlWriter writer = XmlWriter.Create(sww))
-            {
-                xsSubmit.Serialize(writer, catList);
-                xml = sww.ToString(); // Your XML
-            }
-
-            return new HttpResponseMessage
-            {
-                Content = new StringContent(xml, Encoding.UTF8, "application/xml"),
-                 StatusCode = HttpStatusCode.OK
-            };
-        }
     }
 }

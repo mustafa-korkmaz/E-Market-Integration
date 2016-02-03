@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Api.Models;
 using Api.Common;
-using Api.DAL.DTO;
 using System.Net;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using Api.Common.DataExport;
+using Api.BL.DataExport;
 
-namespace Api.BL
+namespace Api.BL.Integration
 {
     public class BLIntegration
     {
@@ -40,7 +39,7 @@ namespace Api.BL
 
             try
             {
-                Integration integration = db.Integrations.Single(p => p.Name == integrationName);
+                Api.DAL.DTO.Integration integration = db.Integrations.Single(p => p.Name == integrationName);
 
                 var integrationDetail = integration.IntegrationDetails.Single(p => p.ExportType == type);
 
@@ -53,9 +52,9 @@ namespace Api.BL
                 // Pipes the stream to a higher level stream reader with the required encoding format. 
                 StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
 
-                var categories = JsonConvert.DeserializeObject<IList<CategoryModel>>(readStream.ReadToEnd());
+                string webResponseData = readStream.ReadToEnd();
 
-                blResponse.ResponseData = new IntegrationModel { Content = readStream.ReadToEnd() };
+                blResponse.ResponseData = new IntegrationModel { Content = GetSerializedData(ref webResponseData, type) };
 
                 webResponse.Close();
                 readStream.Close();
@@ -118,6 +117,33 @@ namespace Api.BL
                 default:
                     return ExportType.Undefined;
             }
+        }
+
+        /// <summary>
+        /// returns serialized xml string
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="exportType"></param>
+        /// <returns></returns>
+        private string GetSerializedData(ref string data, ExportType exportType)
+        {
+            string xml = string.Empty;
+
+            switch (exportType)
+            {
+                case ExportType.Product:
+                    var productRoot = JsonConvert.DeserializeObject<ProductRoot>(data);
+                    var productExporter = new ProductExporter(productRoot);
+                    xml = productExporter.ExportData();
+                    break;
+                case ExportType.Category:
+                    var categoryRoot = JsonConvert.DeserializeObject<List<Category>>(data);
+                    var categoryExporter = new CategoryExporter(categoryRoot);
+                    xml = categoryExporter.ExportData();
+                    break;
+            }
+
+            return xml;
         }
     }
 }

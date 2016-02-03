@@ -19,13 +19,50 @@ namespace Api.Common.DataExport
         public int Quantity { get; set; }
         public decimal Price { get; set; }
         public decimal TaxRate { get; set; }
-        public bool TaxIncluded { get; set; }
+        public int TaxIncluded { get; set; }
         public decimal SpecialPrice { get; set; }
         public string DefaultImage { get; set; }
+    }
 
+    public class ProductRoot
+    {
+        public List<Product> Products { get; set; }
         public List<ProductAttribute> ProductAttributes { get; set; }
         public List<ProductImage> ProductImages { get; set; }
         public List<ProductOption> ProductOptions { get; set; }
         public List<ProductShippingMethod> ProductShippingMethods { get; set; }
     }
+
+    public class ExtendedProduct
+    {
+        public Product Product { get; set; }
+
+        public List<ProductAttribute> ProductAttributes { get; private set; }
+        public List<ProductImage> ProductImages { get; set; }
+        public List<ProductOption> ProductOptions { get; set; }
+        public List<ProductShippingMethod> ProductShippingMethods { get; set; }
+
+        public void SetProductAttributes(List<ProductAttribute> productAttributes)
+        {
+            ProductAttributes = productAttributes.Where(p => p.ProductId == Product.ProductId).ToList();
+        }
+
+        public void SetProductImages(List<ProductImage> productImages)
+        {
+            ProductImages = productImages.Where(p => p.ProductId == Product.ProductId).ToList();
+        }
+
+        public void SetProductOptions(List<ProductOption> productOptions)
+        {
+            ProductOptions = productOptions.Where(p => p.ProductId == Product.ProductId).ToList();
+        }
+
+        public void SetProductShippingMethods(List<ProductShippingMethod> productShippingMethods)
+        {
+            ProductShippingMethods = productShippingMethods;
+        }
+    
+    }
 }
+
+

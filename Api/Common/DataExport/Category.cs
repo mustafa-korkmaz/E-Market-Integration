@@ -5,7 +5,6 @@ using System.Web;
 
 namespace Api.Common.DataExport
 {
-    [Serializable]
     public class Category
     {
         public int CategoryId { get; set; }
@@ -13,4 +12,5 @@ namespace Api.Common.DataExport
         public int ParentCategoryId { get; set; }
         public string ParentCategoryName { get; set; }
     }
+
 }

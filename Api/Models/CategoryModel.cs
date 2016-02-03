@@ -6,11 +6,8 @@ using System.Linq;
 using System.Web;
 
 namespace Api.Models
-
 {
-
-    [Serializable]
-    public class CategoryModel : DataExportModel
+    public class CategoryModel
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
@@ -18,13 +15,9 @@ namespace Api.Models
         public string ParentCategoryName { get; set; }
     }
 
-    public class ProductModel : DataExportModel
+    public class ProductModel
     {
 
-    }
-    [Serializable]
-    public class DataExportModel
-    {
     }
 
 }
