@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace Api.Common.DataExport
@@ -22,6 +23,12 @@ namespace Api.Common.DataExport
         public int TaxIncluded { get; set; }
         public decimal SpecialPrice { get; set; }
         public string DefaultImage { get; set; }
+
+        private string ReplaceHexadecimalSymbols(string txt)
+        {
+            string r = "[\x00-\x08\x0B\x0C\x0E-\x1F\x26]";
+            return Regex.Replace(txt, r, "", RegexOptions.Compiled);
+        }
     }
 
     public class ProductRoot
@@ -61,7 +68,7 @@ namespace Api.Common.DataExport
         {
             ProductShippingMethods = productShippingMethods;
         }
-    
+
     }
 }
 

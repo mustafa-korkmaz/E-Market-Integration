@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Xml;
 using System.Xml.Serialization;
@@ -18,12 +19,15 @@ namespace Api.BL.Helper
             }
 
             var xmlserializer = new XmlSerializer(typeof(T));
-            var stringWriter = new StringWriter();
-            using (var writer = XmlWriter.Create(stringWriter))
-            {
-                xmlserializer.Serialize(writer, value);
-                return stringWriter.ToString();
-            }
+
+            var memoryStream = new MemoryStream();
+            var streamWriter = new StreamWriter(memoryStream, System.Text.Encoding.UTF8);
+
+            xmlserializer.Serialize(streamWriter, value);
+
+            var xml= Encoding.UTF8.GetString(memoryStream.ToArray());
+
+            return xml;
         }
     }
 }
