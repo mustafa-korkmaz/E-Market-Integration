@@ -19,7 +19,7 @@ SELECT
     m.name AS BrandName,
     p.quantity AS Quantity,
     p.price AS Price,
-    (tra.rate) AS TaxRate,
+    IFNULL((tra.rate),0) AS TaxRate,
     0 AS TaxIncluded,
     IFNULL((SELECT 
                     ps1.price
@@ -41,9 +41,9 @@ FROM
     manufacturer m ON (m.manufacturer_id = p.manufacturer_id)
         JOIN
     product_description pd ON (pd.product_id = p.product_id)
-        JOIN
+        LEFT JOIN
     tax_rule tru ON (p.tax_class_id = tru.tax_class_id)
-        JOIN
+        LEFT JOIN
     tax_rate tra ON (tra.tax_rate_id = tru.tax_rate_id);
 
 
