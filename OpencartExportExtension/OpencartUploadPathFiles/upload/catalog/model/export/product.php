@@ -8,7 +8,7 @@ class ModelExportProduct extends Model {
 	$query = $this->db->query("SELECT p.product_id AS ProductId, p.model AS ProductCode, pd.name AS ProductName, 
 					     	  pd.description AS ProductDescription, p.status AS Status, cd.category_id AS CategoryId,cd.name AS CategoryName,
 							  m.manufacturer_id AS BrandId, m.name AS BrandName, p.quantity AS Quantity, p.price AS Price,
-							 (tra.rate) AS TaxRate, 0 AS TaxIncluded,
+							  IFNULL((tra.rate),0) AS TaxRate, 0 AS TaxIncluded,
 							  IFNULL((SELECT ps1.price
 										FROM " . DB_PREFIX ."product_special ps1
 										WHERE
@@ -22,8 +22,8 @@ class ModelExportProduct extends Model {
 							  JOIN " . DB_PREFIX . "category_description cd ON (cd.category_id = temp_p2c.category_id)
 							  JOIN " . DB_PREFIX . "manufacturer m ON (m.manufacturer_id = p.manufacturer_id)
 							  JOIN " . DB_PREFIX . "product_description pd ON (pd.product_id = p.product_id)
-							  JOIN " . DB_PREFIX . "tax_rule tru ON (p.tax_class_id = tru.tax_class_id)
-							  JOIN " . DB_PREFIX . "tax_rate tra ON (tra.tax_rate_id = tru.tax_rate_id)");
+							  LEFT JOIN " . DB_PREFIX . "tax_rule tru ON (p.tax_class_id = tru.tax_class_id)
+							  LEFT JOIN " . DB_PREFIX . "tax_rate tra ON (tra.tax_rate_id = tru.tax_rate_id)");
 
 	$this->dropTempProductToCategoryTable();
 		
