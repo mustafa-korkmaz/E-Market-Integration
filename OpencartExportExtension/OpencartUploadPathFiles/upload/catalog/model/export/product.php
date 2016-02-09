@@ -69,7 +69,7 @@ class ModelExportProduct extends Model {
 	function createTempProductToCategoryTable(){
 	
 	$command = $this->db->query("CREATE TEMPORARY TABLE IF NOT EXISTS temp_product_to_category (product_id int,category_id int);");
-	$command = $this->db->query("TRUNCATE TABLE temp_product_to_category;");
+	$command = $this->db->query("DELETE FROM temp_product_to_category;");
 	$command = $this->db->query("INSERT INTO temp_product_to_category 
 					 SELECT pc.product_id,max(pc.category_id) 
 					 FROM " . DB_PREFIX . "product_to_category pc 
