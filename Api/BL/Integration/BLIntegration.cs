@@ -9,6 +9,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Api.Common.DataExport;
 using Api.BL.DataExport;
+using Api.DAL.DTO;
 
 namespace Api.BL.Integration
 {
@@ -43,6 +44,8 @@ namespace Api.BL.Integration
 
                 var integrationDetail = integration.IntegrationDetails.Single(p => p.ExportType == type);
 
+                var integrationSettings = integration.IntegrationSettings;
+
                 WebRequest request = WebRequest.Create(integrationDetail.Url);
                 var webResponse = request.GetResponse();
 
@@ -54,7 +57,7 @@ namespace Api.BL.Integration
 
                 string webResponseData = readStream.ReadToEnd();
 
-                blResponse.ResponseData = new IntegrationModel { Content = GetSerializedData(ref webResponseData, type) };
+                blResponse.ResponseData = new IntegrationModel { Content = GetSerializedData(ref webResponseData, type, integrationSettings) };
 
                 webResponse.Close();
                 readStream.Close();
@@ -125,7 +128,7 @@ namespace Api.BL.Integration
         /// <param name="data"></param>
         /// <param name="exportType"></param>
         /// <returns></returns>
-        private string GetSerializedData(ref string data, ExportType exportType)
+        private string GetSerializedData(ref string data, ExportType exportType, ICollection<IntegrationSetting> integrationSettings)
         {
             string xml = string.Empty;
 
@@ -133,7 +136,7 @@ namespace Api.BL.Integration
             {
                 case ExportType.Product:
                     var productRoot = JsonConvert.DeserializeObject<ProductRoot>(data);
-                    var productExporter = new ProductExporter(productRoot);
+                    var productExporter = new ProductExporter(productRoot, integrationSettings);
                     xml = productExporter.ExportData();
                     break;
                 case ExportType.Category:

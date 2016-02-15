@@ -225,6 +225,7 @@
     <Compile Include="Controllers\IntegrationsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DAL\DTO\IntegrationDetail.cs" />
+    <Compile Include="DAL\DTO\IntegrationSetting.cs" />
     <Compile Include="DAL\DTO\MarketUserIntegration.cs" />
     <Compile Include="DAL\DTO\Integration.cs" />
     <Compile Include="DAL\DTO\MarketUser.cs" />
@@ -239,6 +240,14 @@
     <Compile Include="Migrations\201602012253298_seed.cs" />
     <Compile Include="Migrations\201602012253298_seed.Designer.cs">
       <DependentUpon>201602012253298_seed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602151618468_AddIntegrationDetails.cs" />
+    <Compile Include="Migrations\201602151618468_AddIntegrationDetails.Designer.cs">
+      <DependentUpon>201602151618468_AddIntegrationDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602151629409_ChangeIntegrationDetailsValueMaxLength.cs" />
+    <Compile Include="Migrations\201602151629409_ChangeIntegrationDetailsValueMaxLength.Designer.cs">
+      <DependentUpon>201602151629409_ChangeIntegrationDetailsValueMaxLength.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -328,6 +337,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602012253298_seed.resx">
       <DependentUpon>201602012253298_seed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602151618468_AddIntegrationDetails.resx">
+      <DependentUpon>201602151618468_AddIntegrationDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602151629409_ChangeIntegrationDetailsValueMaxLength.resx">
+      <DependentUpon>201602151629409_ChangeIntegrationDetailsValueMaxLength.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

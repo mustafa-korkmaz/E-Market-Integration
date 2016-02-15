@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -51,22 +52,55 @@ namespace Api.Common.DataExport
 
         public void SetProductAttributes(List<ProductAttribute> productAttributes)
         {
-            ProductAttributes = productAttributes.Where(p => p.ProductId == Product.ProductId).ToList();
+            if (productAttributes.Any())
+            {
+                ProductAttributes = productAttributes.Where(p => p.ProductId == Product.ProductId).ToList();
+            }
         }
 
-        public void SetProductImages(List<ProductImage> productImages)
+        public void SetProductImages(List<ProductImage> productImages, string imageUrlPattern)
         {
-            ProductImages = productImages.Where(p => p.ProductId == Product.ProductId).ToList();
+            // first set default product image
+            Product.DefaultImage = GetImageUrl(Product.DefaultImage, imageUrlPattern);
+
+            // now set optional images
+            if (productImages.Any())
+            {
+                ProductImages = productImages.Where(p => p.ProductId == Product.ProductId).ToList();
+                ProductImages.ForEach(i => i.Image = GetImageUrl(i.Image, imageUrlPattern));
+            }
         }
 
         public void SetProductOptions(List<ProductOption> productOptions)
         {
-            ProductOptions = productOptions.Where(p => p.ProductId == Product.ProductId).ToList();
+            if (productOptions.Any())
+            {
+                ProductOptions = productOptions.Where(p => p.ProductId == Product.ProductId).ToList();
+            }
         }
 
         public void SetProductShippingMethods(List<ProductShippingMethod> productShippingMethods)
         {
-            ProductShippingMethods = productShippingMethods;
+            if (productShippingMethods.Any())
+            {
+                ProductShippingMethods = productShippingMethods;
+            }
+        }
+
+        private string GetImageUrl(string imagePath, string imageUrlPattern)
+        {
+            // sample:
+            //image = category/macbook.jpg
+            //http://localhost:8080/image/cache/{fullPath}-500x500{extension}
+
+            if (string.IsNullOrEmpty(imageUrlPattern) || string.IsNullOrEmpty(imagePath))
+                return imagePath;
+
+            string extension = Path.GetExtension(imagePath);
+            string imagePathWithoutExtension = imagePath.Replace(extension, "");
+            string url = imageUrlPattern.Replace(SettingKey.FullPath, imagePathWithoutExtension);
+            url = url.Replace(SettingKey.Extension, extension);
+            return url;
         }
 
     }

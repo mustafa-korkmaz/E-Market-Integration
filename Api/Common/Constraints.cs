@@ -10,4 +10,11 @@ namespace Api.Common
         public const string Category = "category";
         public const string Product = "product";
     }
+
+    public class SettingKey
+    {
+        public const string ImagePath = "imagePath";
+        public const string FullPath = "{fullPath}";
+        public const string Extension = "{extension}";
+    }
 }
